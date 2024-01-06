@@ -30,7 +30,7 @@ public class CheckBalanceServlet extends HttpServlet {
 
             if (rs.next()) {
                 // Retrieve the balance from the result set
-                double balance = rs.getDouble("BALANCE");
+                double balance = rs.getDouble("BALANE");
 
                 // Send the balance as the response
                 resp.getWriter().write(Double.toString(balance));
