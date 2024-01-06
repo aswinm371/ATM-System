@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterServlet extends HttpServlet {
 	
 	//create the query
-	private static final String INSERT_QUERY="INSERT INTO USER_DETAILS(NAME,USERID,PIN,CONTACT) VALUES(?,?,?,?)";
+	private static final String INSERT_QUERY="INSERT INTO USER_DETAILS(NAME,USERID,PIN,CONTACT,BALANCE) VALUES(?,?,?,?,0)";
 	
 	
 	@Override

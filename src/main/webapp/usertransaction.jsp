@@ -18,50 +18,92 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <style>
-        h1{
-            margin-top:3cm;
-            margin-left:12cm;
+        h1 {
+            margin-top: 2cm;
+            margin-left: 12cm;
         }
-        #b2{
-            margin-left:8cm;
+        #b2 {
+            margin-left: 4cm;
         }
-        #b1{
-            margin-left:9cm;
+        #b1 {
+            margin-left: 7cm;
         }
-        #p1{
-        margin-left:90%;
+        #b3 {
+            margin-left: 5.5cm;
+        }
+        #p1 {
+            margin-left: 84%;
+        }
+        #balanceLabel {
+            display: none;
+            width: 250px; /* Set the width as needed */
+            margin-top: 3cm;
+            margin-left: 18cm;
         }
     </style>
 </head>
 <body>
     <%-- Retrieve userid from the session --%>
     <% String userid = (String) request.getSession().getAttribute("userid"); %>
-        <%-- Display userid in the HTML --%>
+    <%-- Display userid in the HTML --%>
     <p id="p1">Welcome, <%= userid %></p>
     <!-- AJAX OPERATIONS Add a new script tag for handling AJAX requests -->
-	<script>
-	    function checkBalance() {
-	        // Get userid from the session
-	        var userid = '<%= userid %>';
-	
-	        // Create an XMLHttpRequest object
-	        var xhr = new XMLHttpRequest();
-	
-	        // Configure it to make a GET request to a servlet
-	        xhr.open("GET", "CheckBalanceServlet?userid=" + encodeURIComponent(userid), true);
-	
-	        // Define the function to handle the response
-	        xhr.onreadystatechange = function () {
-	            if (xhr.readyState === 4 && xhr.status === 200) {
-	                // Display the balance in the p1 element
-	                document.getElementById("p1").innerHTML = "Welcome, " + userid + ". Balance: " + xhr.responseText;
-	            }
-	        };
-	
-	        // Send the request
-	        xhr.send();
-	    }
-	</script>
+    <script>
+        function checkBalance() {
+            // Get userid from the session
+            var userid = '<%= userid %>';
+
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Configure it to make a GET request to the servlet for checkBalance
+            xhr.open("GET", "CheckBalanceServlet?operation=checkBalance&userid=" + encodeURIComponent(userid), true);
+
+            // Define the function to handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Display the balance in the p1 element
+                    document.getElementById("p1").innerHTML = "Welcome, " + userid;
+                    // Display the balance in the label below the buttons
+                    document.getElementById("balanceLabel").innerHTML = "Balance: " + xhr.responseText;
+                    // Show the balance label
+                    document.getElementById("balanceLabel").style.display = "block";
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        }
+
+        function deposit() {
+            // Get userid from the session
+            var userid = '<%= userid %>';
+
+            // Get the deposit amount from the user
+            var amount = prompt("Enter the deposit amount:");
+
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // Configure it to make a GET request to the servlet for deposit
+            xhr.open("GET", "CheckBalanceServlet?operation=deposit&userid=" + encodeURIComponent(userid) + "&amount=" + encodeURIComponent(amount), true);
+
+            // Define the function to handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Display the balance in the p1 element
+                    document.getElementById("p1").innerHTML = "Welcome, " + userid;
+                    // Display the balance in the label below the buttons
+                    document.getElementById("balanceLabel").innerHTML = "Balance: " + xhr.responseText;
+                    // Show the balance label
+                    document.getElementById("balanceLabel").style.display = "block";
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        }
+    </script>
 
     <h1 style="font-size: 2cm;"><big><b>Transaction Page</b></big></h1></br></br></br><br>
 
@@ -69,8 +111,11 @@
 
         <div class="btns">
             <button style="font-size: 1.2cm;" type="button" class="btn btn-primary" id="b2" onclick="checkBalance()">Check Balance</button>
+            <button style="font-size: 1.2cm;" type="button" class="btn btn-secondary" id="b3" onclick="deposit()">Deposit</button>
             <button style="font-size: 1.2cm;" type="button" class="btn btn-warning" id="b1">Transfer Money</button>
         </div>
+        <!-- Display balance in this label -->
+        <label style="font-size:25px;" class="p-3 mb-2 bg-info text-white" id="balanceLabel"></label>
 
     </form>
 </body>
