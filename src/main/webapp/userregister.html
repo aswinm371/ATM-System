@@ -28,7 +28,7 @@
         }
 
         .background {
-            width: 430px;
+            width: 330px;
             height: 520px;
             position: absolute;
             transform: translate(-50%, -50%);
@@ -56,23 +56,29 @@
             line-height: 42px;
             text-align: center;
         }
+        .fieldss{
+        
+        	margin-left: 6cm; 
+        }
 
         label {
             display: block;
             margin-top: 20px;
             font-size: 16px;
             font-weight: 500;
-            width:70%
+            width:70%;
+
         }
 
         input {
-            display: block;
+            
             height: 40px; /* Reduced height */
-            width: 100%;
+            width: 60%;
             background-color: rgba(255, 255, 255, 0.07);
             border-radius: 3px;
             padding: 0 10px;
             margin-top: 8px;
+            
             font-size: 14px;
             font-weight: 300;
             color: #ffffff;
@@ -85,6 +91,7 @@
 
         button {
             margin-top: 20px; /* Reduced margin */
+            margin-left: 6cm;
             width: 100%;
             background-color: #ffffff;
             color: #080710;
@@ -94,6 +101,10 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .btns{
+        margin-left:6cm;
+        }
+        
     </style>
     <script>
     function loginnew(){
@@ -104,19 +115,20 @@
 
     <form class="container" action="register" method="get">
         <h1>User Registration</h1>
-        <div>
+        <div class="fieldss">
             <label for="name">Name</label>
-            <input type="text" name="name" class="form-control" placeholder="Enter the Name" required/>
+            <input type="text" name="name"  placeholder="Enter the Name" required/>
 
             <label for="userid">User ID</label>
-            <input type="text" name="userid" class="form-control" placeholder="Enter the User ID" required/>
+            <input type="text" name="userid"  placeholder="Enter the User ID" required/>
 
             <label for="pin">PIN</label>
-            <input type="number" name="pin" class="form-control" placeholder="Enter the PIN no." required/>
+            <input type="number" name="pin"  placeholder="Enter the PIN no." required/>
 
             <label for="contact">Mobile no.</label>
-            <input type="number" name="contact" class="form-control" placeholder="Enter the Mobile No."  required/>
+            <input type="number" name="contact"  placeholder="Enter the Mobile No."  required/>
         </div><br>
+       <div class="btns">
         <div>
             <input type="submit" name="login" value="Submit" class="btn btn-success"/><br>
             <input type="reset" name="reset" value="Reset" class="btn btn-danger"/>
@@ -125,6 +137,7 @@
         	<div>
                 <input type="submit" name="login" value="Already, have an account, Log in" class="btn btn-warning" onclick="loginnew()"/>
             </div>
+        </div>
     </form>
 </body>
 </html>

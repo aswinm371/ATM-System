@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>User Transaction Page</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -84,6 +85,7 @@
             xhr.open("GET", "CheckBalanceServlet?operation=checkBalance&userid=" + encodeURIComponent(userid), true);
 
             document.getElementById("depositInput").value = "";
+            document.getElementById("transferAmount").value = "";
             document.getElementById("depInput").style.display = "none";
             document.getElementById("transactionInput").style.display = "none";
 
@@ -116,6 +118,7 @@
             // Configure it to make a GET request to the servlet for deposit
             xhr.open("GET", "CheckBalanceServlet?operation=deposit&userid=" + encodeURIComponent(userid) + "&amount=" + encodeURIComponent(amount), true);
 
+            document.getElementById("transactionInput").value = "";
             document.getElementById("balanceLabel").style.display = "none";
             document.getElementById("transactionInput").style.display = "none";
             document.getElementById("depInput").style.display = "block";
@@ -150,6 +153,7 @@
                 "&destinationUserId=" + encodeURIComponent(destinationUserId) +
                 "&transferAmount=" + encodeURIComponent(transferAmount), true);
 
+            document.getElementById("depositInput").value = "";
             document.getElementById("balanceLabel").style.display = "none";
             document.getElementById("depInput").style.display = "none";
             document.getElementById("transactionInput").style.display = "block";
